@@ -14,6 +14,11 @@
 
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
+	        height: 650,
+	        dayClick: function() {
+       			alert('a day has been clicked!');
+       			$('#calendar').fullCalendar('next'); //moves on to the next month 
+    		}
 
 	    })
 
@@ -28,6 +33,7 @@
 	  end: new Date()
 	};
 	myCalendar.fullCalendar( 'renderEvent', myEvent );
+
 	
 	</script>
 </head>
