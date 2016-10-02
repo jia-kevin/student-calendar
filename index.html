@@ -14,6 +14,7 @@
 
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
+	        defaultView: 'basicWeek',
 	        height: 650,
 	        dayClick: function() {
        			alert('a day has been clicked!');
@@ -22,19 +23,16 @@
 
 	    })
 
+		var newEvent = new Object();
+
+		newEvent.title = "some text";
+		newEvent.start = new Date();
+		newEvent.allDay = false;
+		$('#calendar').fullCalendar( 'renderEvent', myEvent );	
+
 	});
 
-	var myCalendar = $('#calendar'); 
-	myCalendar.fullCalendar();
-	var myEvent = {
-	  title:"CS MIDTERM",
-	  allDay: true,
-	  start: new Date(),
-	  end: new Date()
-	};
-	myCalendar.fullCalendar( 'renderEvent', myEvent );
 
-	
 	</script>
 </head>
 <body>
