@@ -3,7 +3,7 @@
 <head>
 	<title>Student Calendar</title>
 	<link rel='stylesheet' href='css/fullcalendar.css' />
-	<link rel='stylesheet' href='css/fullcalendar-custom.css' />
+	<link rel='stylesheet' type='text/css' href='css/jquery-ui.css' />
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
@@ -23,8 +23,10 @@
             };
             $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
         });
+
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
+	        theme: true,
 	        height: $(window).height(),
 	        dayClick: function() {
        			alert('a day has been clicked!');
@@ -33,7 +35,6 @@
     	})
 
     });
-
 
 	</script>
 </head>
