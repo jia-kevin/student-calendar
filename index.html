@@ -7,8 +7,9 @@
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
-	<script>
-    $(document).ready(function() {
+	<script type="text/javascript">
+
+	$(document).ready(function() {
 
         var date = new Date(2016, 10, 10);
         var d = date.getDate();
@@ -22,6 +23,13 @@
             };
             $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
         });
+	    $('#calendar').fullCalendar({
+	        // put your options and callbacks here
+	        height: $(window).height(),
+	        dayClick: function() {
+       			alert('a day has been clicked!');
+       			$('#calendar').fullCalendar('next'); //moves on to the next month 
+    		}
 
         $('#calendar').fullCalendar({
             editable: true
@@ -29,7 +37,8 @@
 
     });
 
-</script>
+
+	</script>
 </head>
 <body>
 	<button type="button" id="button_id" onClick=>Create new event</button>
