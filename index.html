@@ -7,37 +7,32 @@
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
+	<script>
+    $(document).ready(function() {
 
-	    // page is now ready, initialize the calendar...
+        var date = new Date(2016, 10, 10);
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
 
-	    $('#calendar').fullCalendar({
-	        // put your options and callbacks here
-	        height: 650,
-	        dayClick: function() {
-       			alert('a day has been clicked!');
-       			$('#calendar').fullCalendar('next'); //moves on to the next month 
-    		}
+        $('#button_id').click(function() {
+            var newEvent = {
+                title: 'NEW EVENT',
+                start: new Date(y, m, d)
+            };
+            $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
+        });
 
-	    })
+        $('#calendar').fullCalendar({
+            editable: true
+        });
 
-	});
+    });
 
-	var myCalendar = $('#calendar'); 
-	myCalendar.fullCalendar();
-	var myEvent = {
-	  title:"CS MIDTERM",
-	  allDay: true,
-	  start: new Date(),
-	  end: new Date()
-	};
-	myCalendar.fullCalendar( 'renderEvent', myEvent );
-
-	
-	</script>
+</script>
 </head>
 <body>
+	<button type="button" id="button_id" onClick=>Create new event</button>
 	<div id="calendar"></div>
 </body>
 </html>
