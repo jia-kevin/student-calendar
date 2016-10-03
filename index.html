@@ -15,7 +15,7 @@
 
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
-	        height: 650,
+	        height: $(window).height(),
 	        dayClick: function() {
        			alert('a day has been clicked!');
        			$('#calendar').fullCalendar('next'); //moves on to the next month 
@@ -28,7 +28,7 @@
 		newEvent.title = "some text";
 		newEvent.start = new Date();
 		newEvent.allDay = false;
-		$('#calendar').fullCalendar( 'renderEvent', myEvent );	
+		$('#calendar').fullCalendar( 'renderEvent', myEvent);	
 
 	});
 
