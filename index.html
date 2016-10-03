@@ -8,14 +8,11 @@
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
 	<script type="text/javascript">
-
 	$(document).ready(function() {
-
         var date = new Date(2016, 10, 10);
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
-
         $('#button_id').click(function() {
             var newEvent = {
                 title: 'NEW EVENT',
@@ -23,18 +20,21 @@
             };
             $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
         });
+        var newEvent = {
+            title: 'CS135 Midterm',
+            start: new Date(2016, 09, 03)
+        };
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
+	        editable: true,
+	        events: [newEvent],
 	        height: $(window).height(),
 	        dayClick: function() {
        			alert('a day has been clicked!');
        			$('#calendar').fullCalendar('next'); //moves on to the next month 
     		}
     	})
-
     });
-
-
 	</script>
 </head>
 <body>
