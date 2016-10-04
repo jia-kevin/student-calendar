@@ -3,7 +3,7 @@
 <head>
 	<title>Student Calendar</title>
 	<link rel='stylesheet' href='css/fullcalendar.css' />
-	<link rel='stylesheet' type='text/css' href='css/jquery-ui.css' />
+	<!--<link rel='stylesheet' type='text/css' href='css/jquery-ui.css' />-->
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
@@ -13,13 +13,24 @@
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
-        $('#button_id').click(function() {
+
+        $('#button_create').click(function() { //creates new event
             var newEvent = {
                 title: 'NEW EVENT',
                 start: new Date(y, m, d)
             };
             $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
         });
+
+        $('#button_view').click(function() { //changes viewType
+            var view = $('#calendar').fullCalendar('getView');
+            if (view.name == 'month') {
+                $('#calendar').fullCalendar( 'changeView','agendaWeek');
+            } else {
+                $('#calendar').fullCalendar( 'changeView','month');
+            }
+        });
+
 
         var newEvent = {
             title: 'MATH135 Midterm',
@@ -39,8 +50,10 @@
 
 	</script>
 </head>
-<bod
-	<button type="button" id="button_id" onClick=>Create new event</button>
+<body>
+	<button type="button" id="button_create" onClick=>Create new event</button>
+    <button type="button" id="button_view" onClick=>Change View</button>
+
 	<div id="calendar"></div>
 </body>
 </html>
