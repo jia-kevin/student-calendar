@@ -6,7 +6,7 @@ $(document).ready(function() {
         var m = date.getMonth();
         var y = date.getFullYear();
 
-        $('#button_create').click(function() { //creates new event
+        $('#button_create').click(function() { //creates new event on button click
             var newEvent = {
                 title: 'NEW EVENT',
                 start: new Date(y, m, d)
@@ -49,20 +49,20 @@ $(document).ready(function() {
 	        events: "application/jsonMySQL.php",
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
-                window.alert(date);
-                var title = prompt('Event Title:');
-                var time = prompt('Event Time: ')
-
-                while (!(checkTime(time))){ //if time is not valid, prompt again
-                    time = prompt('Invalid input. Event Time: ')
-                }
-
-                //todo: implement time into newEvent date 
-                var newEvent = {
-                    title: title,
-                    start: date
-                };
-                $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
+                vex.dialog.prompt({
+                    message: 'Event Title:',
+                    placeholder: 'Event Title',
+                    callback: function (value) {
+                        //console.log(value)
+                        var title = value;
+                        var newEvent = {
+                            title: title,
+                            start: date
+                        };
+                        $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
+                    }
+               })
+                
             }
     	})
     });
