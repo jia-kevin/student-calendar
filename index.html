@@ -39,6 +39,17 @@
     		textColor: 'black' // an option!
         };
 
+        function checkTime(time){ //checks whether given time is in valid format
+            re = /^\d{1,2}:\d{2}([ap]m)?$/; //regular expression to match required format
+            if(time != '' && !time.match(re)) {
+                alert("Invalid time format: " + time);
+                time = prompt('Event Time: ')
+                return false;
+            } else {
+                return true;
+            }
+        }
+        
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 	        theme: true,
@@ -46,8 +57,16 @@
 	        editable: true,
 	        events: "application/jsonMySQL.php",
 
-            dayClick: function(date, allDay, jsEvent, view) {
+            dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
+                window.alert(date);
                 var title = prompt('Event Title:');
+                var time = prompt('Event Time: ')
+
+                while (!(checkTime(time))){ //if time is not valid, prompt again
+                    time = prompt('Invalid input. Event Time: ')
+                }
+
+                //todo: implement time into newEvent date 
                 var newEvent = {
                     title: title,
                     start: date
