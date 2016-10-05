@@ -44,7 +44,16 @@
 	        theme: true,
 	        height: $(window).height(),
 	        editable: true,
-	        events: [newEvent],
+	        events: "application/jsonMySQL.php",
+
+            dayClick: function(date, allDay, jsEvent, view) {
+                var title = prompt('Event Title:');
+                var newEvent = {
+                    title: title,
+                    start: date
+                };
+                $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
+            }
     	})
     });
 
