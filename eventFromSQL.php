@@ -3,8 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("myServer", "kevinarlen ", "studentcalendar123", "Northwind");
-
+$conn = new mysqli("student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com", "kevinarlen ", "studentcalendar123", "Student_Calendar0", 3306);
 $result = $conn->query("SELECT ID, Title, Start, End FROM Customers");
 
 $outp = "[";
