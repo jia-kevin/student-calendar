@@ -9,8 +9,8 @@ $result = $conn->query("SELECT ID, Title, Start, End FROM Customers");
 $outp = "[";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "[") {$outp .= ",";}
-    $outp .= '{"ID":"'  . $rs["ID"] . '",';
-    $outp .= '"Title":"'   . $rs["Title"]        . '",';
+    //$outp .= '{"ID":"'  . $rs["ID"] . '",'; //don't need, mysql should have autoincrement
+    $outp .= '"Title":"'   . $rs["Title"]        . '",'; //varchar(255)
     $outp .= '"Start":"'. $rs["Start"]     . '"}'; 
     $outp .= '"End":"'. $rs["End"]     . '"}'; 
 }
