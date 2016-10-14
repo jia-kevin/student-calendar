@@ -40,7 +40,7 @@ $(document).ready(function() {
 	        theme: true,
 	        height: $(window).height(),
 	        editable: true,
-	        events: "application/jsonMySQL.php",
+	        events: "application/eventFromSQL.php",
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
                vex.dialog.open({
