@@ -1,4 +1,4 @@
-//each event will have a start time, end time, and title
+//each event will have a start time, end time, title and description
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");

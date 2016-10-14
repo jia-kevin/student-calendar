@@ -43,18 +43,6 @@ $(document).ready(function() {
 	        events: "application/jsonMySQL.php",
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
-               //  vex.dialog.prompt({
-               //      message: 'Event Title:',
-               //      placeholder: 'Event Title',
-               //      callback: function (value) {
-               //          var title = value;
-               //          var newEvent = {
-               //              title: title,
-               //              start: date
-               //          };
-               //          $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
-               //      }
-               // })
                vex.dialog.open({
                 input: [
                     '<label for="text">Event Name:</label>',
