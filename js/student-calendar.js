@@ -17,13 +17,16 @@ $(document).ready(function() {
             return defaultTime;
         } 
 
-
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 	        theme: true,
 	        height: $(window).height(),
 	        editable: true,
 	        events: "application/eventFromSQL.php",
+            
+            eventClick: function(calEvent, jsEvent, view){
+               vex.dialog.alert('Event: ' + calEvent.title);
+            },
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
                 getTime(date, date);
@@ -42,6 +45,7 @@ $(document).ready(function() {
                     if (!data) {
                         return console.log('Cancelled')
                     }
+
                     var title = data.name;
                     var datetime = date;
                     var newEvent = {
@@ -54,7 +58,8 @@ $(document).ready(function() {
 
                 }   
                 })
-                
             }
+
+
     	})
     });
