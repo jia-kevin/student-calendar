@@ -1,18 +1,6 @@
 
 
 $(document).ready(function() {
-        // var date = new Date(2016, 10, 10);
-        // var d = date.getDate();
-        // var m = date.getMonth();
-        // var y = date.getFullYear();
-
-        // // $('#button_create').click(function() { //creates new event on button click
-        // //     var newEvent = {
-        // //         title: 'NEW EVENT',
-        // //         start: new Date(y, m, d)
-        // //     };
-        // //     $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
-        // // });
 
         $('#button_view').click(function() { //changes viewType 
             var view = $('#calendar').fullCalendar('getView');
@@ -23,17 +11,6 @@ $(document).ready(function() {
             }
         });
 
-
-        function checkTime(time){ //checks whether given time is in valid format
-            re = /^\d{1,2}:\d{2}([ap]m)?$/; //regular expression to match required format
-            if(time != '' && !time.match(re)) {
-                alert("Invalid time format: " + time);
-                time = prompt('Event Time: ')
-                return false;
-            } else {
-                return true;
-            }
-        }
 
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
@@ -47,8 +24,10 @@ $(document).ready(function() {
                 input: [
                     '<label for="text">Event Name:</label>',
                     '<input name="name" type="text" value="" />',
-                    '<label for="date">Time</label>',
-                        '<input name="time" type="time" value="" />',
+                    '<label for="start">Start Time</label>',
+                        '<input name="stime" type="time" value="" />',
+                    '<label for="end">End Time</label>',
+                        '<input name="ftime" type="time" value="" />'
                 ].join(''),
                 callback: function (data) {
                     if (!data) {
@@ -58,6 +37,7 @@ $(document).ready(function() {
                     var datetime = date;
                     var newEvent = {
                         title:title,
+                        allDay: false,
                         start: datetime //need to manipulate datetime to implement inputted time
                     }
                     $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
