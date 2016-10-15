@@ -10,6 +10,11 @@ $(document).ready(function() {
                 $('#calendar').fullCalendar( 'changeView','month');
             }
         });
+    
+        function getTime(defaultTime, myTime){
+            defaultTime.time(myTime);
+            return defaultTime;
+        } 
 
 
 	    $('#calendar').fullCalendar({
@@ -20,14 +25,15 @@ $(document).ready(function() {
 	        events: "application/eventFromSQL.php",
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
-               vex.dialog.open({
+                getTime(date, date);
+                vex.dialog.open({
                 input: [
                     '<label for="text">Event Name:</label>',
                     '<input name="name" type="text" value="" />',
                     '<label for="start">Start Time</label>',
                         '<input name="stime" type="time" value="" />',
                     '<label for="end">End Time</label>',
-                        '<input name="ftime" type="time" value="" />'
+                        '<input name="etime" type="time" value="" />'
                 ].join(''),
                 callback: function (data) {
                     if (!data) {
@@ -38,7 +44,8 @@ $(document).ready(function() {
                     var newEvent = {
                         title:title,
                         allDay: false,
-                        start: datetime //need to manipulate datetime to implement inputted time
+                        start: getTime(date, data.stime).format(),
+                        end: getTime(date, data.etime).format()
                     }
                     $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
 
