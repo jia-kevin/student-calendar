@@ -10,6 +10,7 @@ $(document).ready(function() {
                 $('#calendar').fullCalendar( 'changeView','month');
             }
         });
+
     
         function getTime(defaultTime, myTime){
             defaultTime.time(myTime);
@@ -33,7 +34,9 @@ $(document).ready(function() {
                     '<label for="start">Start Time</label>',
                         '<input name="stime" type="time" value="" />',
                     '<label for="end">End Time</label>',
-                        '<input name="etime" type="time" value="" />'
+                        '<input name="etime" type="time" value="" />',
+                    '<label for="allDay">All day?</label>',
+                        '<input name="allDay" type="checkbox" />'
                 ].join(''),
                 callback: function (data) {
                     if (!data) {
@@ -43,7 +46,7 @@ $(document).ready(function() {
                     var datetime = date;
                     var newEvent = {
                         title:title,
-                        allDay: false,
+                        allDay: data.allDay,
                         start: getTime(date, data.stime).format(),
                         end: getTime(date, data.etime).format()
                     }
