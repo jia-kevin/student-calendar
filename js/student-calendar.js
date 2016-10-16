@@ -17,11 +17,21 @@ $(document).ready(function() {
             return defaultTime;
         } 
 
+        //playing around, delete if useless
+        function callPHP(title, start, end){
+            var httpc = new XMLHttpRequest();
+            var url = "eventToSQL.php"
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "text/xml");
+            httpc.send(title);
+        }
+        //
+
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 	        theme: true,
 	        height: $(window).height(),
-	        editable: true,
+	        editable: false,
 	        events: "application/eventFromSQL.php",
             
             eventClick: function(calEvent, jsEvent, view){
