@@ -27,6 +27,21 @@ $(document).ready(function() {
         }
         //
 
+//getting mysql data from php using ajax
+        function getPHP() {
+             $.ajax({ type: "GET",   
+                     url: "eventFromSQL.php",   
+                     async: false,
+                     success : function(text)
+                    {
+                     response = text;
+                    }
+            });
+            vex.dialog.alert(response);
+        }
+// to be removed
+
+
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 	        theme: true,
