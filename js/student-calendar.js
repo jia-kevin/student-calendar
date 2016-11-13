@@ -30,7 +30,7 @@ $(document).ready(function() {
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 	        theme: true,
-	        height: $(window).height(),
+	        height: $(window).height() * 0.95,
 	        editable: false,
 	        events: "application/eventFromSQL.php",
             

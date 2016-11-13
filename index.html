@@ -4,9 +4,10 @@
 	<title>Student Calendar</title>
 	<link rel='stylesheet' href='css/fullcalendar.css' />
 	<link rel='stylesheet' type='text/css' href='css/jquery-ui.css' />
-
+	<link href="css/bootstrap.min.css" rel="stylesheet">	
     <link rel="stylesheet" href="css/vex.css" />
     <link rel="stylesheet" href="css/vex-theme-os.css" />
+
     <script src="js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os'</script>
 
@@ -17,9 +18,9 @@
 
 </head>
 <body>
-	<!--<button type="button" id="button_create" onClick=>Create new event</button>-->
-    <button type="button" id="button_view" onClick=>Change View</button>
-
+	<div class="container">
 	<div id="calendar"></div>
+	<button type="button" id="button_view" class="btn btn-primary btn-sm" onClick=>Change View</button>
+	</div>
 </body>
 </html>
