@@ -44,14 +44,42 @@ $(document).ready(function() {
 
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
+
+            header: {
+                left: 'prev, next, today',
+                center: 'title',
+                right: 'month, agendaWeek, agendaDay'
+            },
 	        theme: true,
 	        height: $(window).height() * 0.95,
-	        editable: false,
+	        editable: true,
+            droppable: true,
 	        events: "application/eventFromSQL.php",
             
             eventClick: function(calEvent, jsEvent, view){
                vex.dialog.alert('Event: ' + calEvent.title);
             },
+
+            //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
+            eventReceive: function(event){
+                var title = event.title;
+                var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
+                $.ajax({
+                    url: 'eventToSQL.php',
+                    data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response){
+                        event.id = response.eventid;
+                        $('#calendar').fullCalendar('updateEvent',event);
+                    },
+                    error: function(e){
+                        console.log(e.responseText);
+                    }
+               });
+                $('#calendar').fullCalendar('updateEvent',event);
+            },
+            //
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
                 getTime(date, date);
