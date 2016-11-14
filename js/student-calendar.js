@@ -41,7 +41,7 @@ $(document).ready(function() {
         }
 // to be removed
 
-
+        var zone = "05:30"; //adding location timezone, to be modified
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
 
@@ -62,6 +62,7 @@ $(document).ready(function() {
 
             //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
             eventReceive: function(event){
+                vex.dialog.alert('WORKS');
                 var title = event.title;
                 var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
                 $.ajax({
