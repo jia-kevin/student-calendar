@@ -16,10 +16,9 @@ $result = $conn->query($sql);
 $outp = "[";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "[") {$outp .= ",";}
-    //$outp .= '{"ID":"'  . $rs["ID"] . '",'; //don't need, mysql should have autoincrement
     $outp .= '"Title":"'   . $rs["Title"]        . '",'; //varchar(255)
-    $outp .= '"Start":"'. $rs["Start"]     . '"}'; 
-    $outp .= '"End":"'. $rs["End"]     . '"}'; 
+    $outp .= '"Start":"'. $rs["Start"]     . '"}'; //date
+    $outp .= '"End":"'. $rs["End"]     . '"}'; //date
 }
 $outp .="]";
 
