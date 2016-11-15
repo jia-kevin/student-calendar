@@ -15,8 +15,9 @@ $.ajax({
     data: 'type=fetch',
     async: false,
     success: function(response){
-        json_events = response;
         alert(response);
+        json_events = response;
+
     }
 });
 
@@ -24,7 +25,7 @@ $.ajax({
 	    $('#calendar').fullCalendar({
             //options and callbacks
 
-            events: JSON.parse(json_events),
+            //events: JSON.parse(json_events),
             //^ to be uncommented when 'fetch' implementation is fixed
 
             header: {
@@ -45,7 +46,6 @@ $.ajax({
 
             //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
             eventRender: function(event){ //called after dayClick
-                vex.dialog.alert('WORKS');
                 var title = event.title;
                 var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
                 $.ajax({

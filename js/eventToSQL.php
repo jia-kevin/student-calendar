@@ -3,7 +3,7 @@
 $servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com"
 $username = "kevinarlen";
 $password = "studentcalendar123"
-$dbname = "calendar"
+$dbname = "Student-Calendar0"
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
