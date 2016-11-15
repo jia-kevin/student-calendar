@@ -23,7 +23,7 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
         //options and callbacks
 
-        events: JSON.parse(json_events),
+        //events: JSON.parse(json_events),
         //^ to be uncommented when 'fetch' implementation is fixed
 
         header: {
