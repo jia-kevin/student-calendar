@@ -2,66 +2,49 @@
 
 $(document).ready(function() {
 
-        $('#button_view').click(function() { //changes viewType 
-            var view = $('#calendar').fullCalendar('getView');
-            if (view.name == 'month') {
-                $('#calendar').fullCalendar( 'changeView','agendaWeek');
-            } else {
-                $('#calendar').fullCalendar( 'changeView','month');
-            }
-        });
-
     
         function getTime(defaultTime, myTime){
             defaultTime.time(myTime);
             return defaultTime;
         } 
 
-        //playing around, delete if useless
-        function callPHP(title, start, end){
-            var httpc = new XMLHttpRequest();
-            var url = "eventToSQL.php"
-            httpc.open("POST", url, true);
-            httpc.setRequestHeader("Content-Type", "text/xml");
-            httpc.send(title);
-        }
-        //
-
-//getting mysql data from php using ajax
-        function getPHP() {
-             $.ajax({ type: "GET",   
-                     url: "eventFromSQL.php",   
-                     async: false,
-                     success : function(text)
-                    {
-                     response = text;
-                    }
-            });
-            vex.dialog.alert(response);
-        }
-// to be removed
+//this ajax code preventing it from working
+$.ajax({
+    url: 'js/eventToSQL.php',
+    type: 'POST',
+    data: 'type=fetch',
+    async: false,
+    success: function(response){
+        json_events = response;
+        alert(response);
+    }
+});
 
         var zone = "05:30"; //adding location timezone, to be modified
 	    $('#calendar').fullCalendar({
-	        // put your options and callbacks here
+            //options and callbacks
+
+            events: JSON.parse(json_events),
+            //^ to be uncommented when 'fetch' implementation is fixed
 
             header: {
                 left: 'prev, next, today',
                 center: 'title',
                 right: 'month, agendaWeek, agendaDay'
             },
+
 	        theme: true,
 	        height: $(window).height() * 0.95,
 	        editable: true,
             droppable: true,
-	        events: "application/eventFromSQL.php",
+	       // events: "application/eventFromSQL.php",
             
             eventClick: function(calEvent, jsEvent, view){
                vex.dialog.alert('Event: ' + calEvent.title);
             },
 
             //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
-            eventReceive: function(event){
+            eventRender: function(event){ //called after dayClick
                 vex.dialog.alert('WORKS');
                 var title = event.title;
                 var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
@@ -78,9 +61,8 @@ $(document).ready(function() {
                         console.log(e.responseText);
                     }
                });
-                $('#calendar').fullCalendar('updateEvent',event);
             },
-            //
+
 
             dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
                 getTime(date, date);
