@@ -6,19 +6,16 @@ $(document).ready(function() {
         return defaultTime;
     } 
 
-    //this ajax code preventing it from working
     function getEvents() {
         var obj;
         $.ajax({
             url: 'js/eventToSQL.php',
             type: 'POST',
             data: 'type=fetch',
-       //     dataType: 'json',
 
             async: false,
             success: function(response){
                 alert(response);
-                //json_events = response;
                 obj = response;
             }
         });
@@ -27,12 +24,11 @@ $(document).ready(function() {
     
     var json_events = getEvents();
     alert(json_events);
-    var zone = "05:30"; //adding location timezone, to be modified
+    var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
         //options and callbacks
 
-        events: JSON.parse(json_events),
-        //^ to be uncommented when 'fetch' implementation is fixed
+
 
         header: {
             left: 'prev, next, today',
@@ -44,8 +40,8 @@ $(document).ready(function() {
         height: $(window).height() * 0.95,
         editable: true,
         droppable: true,
-       // events: "application/eventFromSQL.php",
-        
+        events: JSON.parse(json_events),
+
         eventClick: function(calEvent, jsEvent, view){
            vex.dialog.alert('Event: ' + calEvent.title);
         },
@@ -55,13 +51,14 @@ $(document).ready(function() {
             var title = event.title;
             var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
             $.ajax({
-                url: 'eventToSQL.php',
+                url: 'js/eventToSQL.php',
                 data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
                 type: 'POST',
                 dataType: 'json',
                 success: function(response){
                     event.id = response.eventid;
-                    $('#calendar').fullCalendar('updateEvent',event);
+                    alert("ya");
+
                 },
                 error: function(e){
                     console.log(e.responseText);
