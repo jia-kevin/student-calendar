@@ -5,8 +5,6 @@ $(document).ready(function() {
         defaultTime.time(myTime);
         return defaultTime;
     } 
-
-    //this ajax code preventing it from working
     function getEvents() {
         var obj;
         $.ajax({
