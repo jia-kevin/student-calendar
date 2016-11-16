@@ -1,21 +1,27 @@
 <?php
 //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
-$servername = "localhost";
-$username = "id198573_kevinarlen";
+$servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com";
+$username = "kevinarlen";
 $password = "studentcalendar123";
-$dbname = "id198573_studentcalendar";
+$dbname = "Student_Calendar0";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $type = $_POST['type'];
 
 if($type == 'new') {
-
   	$startdate = $_POST['startdate'].'+'.$_POST['zone'];
   	$title = $_POST['title'];
-  	$insert = mysqli_query($conn,"INSERT INTO calendar('title', 'startdate', 'enddate', 'allDay') VALUES('$title','$startdate','$startdate','false')");
-  	$lastid = mysqli_insert_id($conn);
-  	echo json_encode(array('status'=>'success','eventid'=>$lastid));
+  	//$insert = mysqli_query($conn,"INSERT INTO calendar('title', 'startdate', 'enddate', 'allDay') VALUES ('$title','$startdate','$startdate','false')");
+    //$sql = "INSERT INTO calendar(title, startdate, enddate, allDay) VALUES ('test','test','test','false')";
+    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ($title, $startdate, $startdate, 'false)";
+    if (mysqli_query($conn, $sql)) {
+      $lastid = mysqli_insert_id($conn);
+      echo json_encode(array('status'=>'success','eventid'=>$lastid));
+    } else {
+      echo "Error";
+    }
+
 }
 
 if($type == 'fetch') {

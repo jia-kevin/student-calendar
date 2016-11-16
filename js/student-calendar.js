@@ -15,20 +15,37 @@ $(document).ready(function() {
 
             async: false,
             success: function(response){
-                alert(response);
                 obj = response;
             }
         });
         return obj;
     }
+
+    function sendEvent(event) {
+        var title = event.title;
+        var start = event.start;
+        alert(event.title);
+        alert(event.start);
+        $.ajax({
+                url: 'js/eventToSQL.php',
+                data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response){
+                    event.id = response.eventid;
+                    alert(response.status);
+                },
+
+                error: function(e){
+                    alert("error");
+                    console.log(e.responseText);
+                }
+           });
+    }
     
-    var json_events = getEvents();
-    alert(json_events);
     var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
         //options and callbacks
-
-
 
         header: {
             left: 'prev, next, today',
@@ -40,13 +57,13 @@ $(document).ready(function() {
         height: $(window).height() * 0.95,
         editable: true,
         droppable: true,
-        events: JSON.parse(json_events),
+        events: JSON.parse(getEvents()),
 
         eventClick: function(calEvent, jsEvent, view){
            vex.dialog.alert('Event: ' + calEvent.title);
         },
 
-        //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
+        /*
         eventRender: function(event){ //called after dayClick
             var title = event.title;
             var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
@@ -65,6 +82,8 @@ $(document).ready(function() {
                 }
            });
         },
+        */
+
 
 
         dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
@@ -88,13 +107,14 @@ $(document).ready(function() {
                 var title = data.name;
                 var datetime = date;
                 var newEvent = {
-                    title:title,
+                    title: title,
                     allDay: data.allDay,
                     start: getTime(date, data.stime).format(),
                     end: getTime(date, data.etime).format()
                 }
+              //  alert(newEvent.start.format("YYYY-MM-DD[T]HH:MM:SS"));
+                sendEvent(newEvent);
                 $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
-
             }   
             })
         }
