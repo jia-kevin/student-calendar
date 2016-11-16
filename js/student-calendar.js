@@ -33,7 +33,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function(response){
                     event.id = response.eventid;
-                    alert(response.status);
+                    alert(event.id);
                 },
 
                 error: function(e){

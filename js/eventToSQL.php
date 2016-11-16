@@ -14,14 +14,10 @@ if($type == 'new') {
   	$title = $_POST['title'];
   	//$insert = mysqli_query($conn,"INSERT INTO calendar('title', 'startdate', 'enddate', 'allDay') VALUES ('$title','$startdate','$startdate','false')");
     //$sql = "INSERT INTO calendar(title, startdate, enddate, allDay) VALUES ('test','test','test','false')";
-    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ($title, $startdate, $startdate, 'false)";
-    if (mysqli_query($conn, $sql)) {
-      $lastid = mysqli_insert_id($conn);
-      echo json_encode(array('status'=>'success','eventid'=>$lastid));
-    } else {
-      echo "Error";
-    }
-
+    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ('$title', '$startdate', '$startdate', 'false')";
+    mysqli_query($conn, $sql);
+    $lastid = mysqli_insert_id($conn);
+    echo json_encode(array('status'=>'success','eventid'=>$lastid));
 }
 
 if($type == 'fetch') {
