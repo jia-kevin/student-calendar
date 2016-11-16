@@ -1,25 +1,30 @@
-//each event will have a start time, end time, title and description
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-
-$servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com"
-$username = "kevinarlen";
-$password = "studentcalendar123"
-$dbname = "Student_Calendar0"
+$servername = "localhost";
+$username = "id198573_kevinarlen";
+$password = "studentcalendar123";
+$dbname = "id198573_studentcalendar";
 
 //$conn = new mysqli("student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com", "kevinarlen ", "studentcalendar123", "Student_Calendar0", 3306);
 $conn = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT ID, Title, Start, End FROM Customers";
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT id, title, startdate, enddate, allDay, FROM calendar";
 $result = $conn->query($sql);
 
 $outp = "[";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "[") {$outp .= ",";}
     //$outp .= '{"ID":"'  . $rs["ID"] . '",'; //don't need, mysql should have autoincrement
-    $outp .= '"Title":"'   . $rs["Title"]        . '",'; //varchar(255)
-    $outp .= '"Start":"'. $rs["Start"]     . '"}'; 
-    $outp .= '"End":"'. $rs["End"]     . '"}'; 
+    $outp .= '"id":"'   . $rs["id"]        . '",';
+    $outp .= '"title":"'   . $rs["title"]        . '",'; //varchar(255)
+    $outp .= '"start":"'. $rs["startdate"]     . '"}'; 
+    $outp .= '"end":"'. $rs["enddate"]     . '"}';
+	$allday = ($rs["allDay"] == "true") ? true : false;
+    $outp .= '"allday":"'. $allday     . '"}'; 
+
 }
 $outp .="]";
 

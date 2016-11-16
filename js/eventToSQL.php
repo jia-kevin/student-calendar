@@ -1,9 +1,9 @@
 <?php
 //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
-$servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com";
-$username = "kevinarlen";
+$servername = "localhost";
+$username = "id198573_kevinarlen";
 $password = "studentcalendar123";
-$dbname = "Student_Calendar0";
+$dbname = "id198573_studentcalendar";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
