@@ -5,25 +5,33 @@ $(document).ready(function() {
         defaultTime.time(myTime);
         return defaultTime;
     } 
-    var json_events;
+
     //this ajax code preventing it from working
-    $.ajax({
-        url: 'js/eventToSQL.php',
-        type: 'POST',
-        data: 'type=fetch',
-        async: false,
-        success: function(response){
-            alert(response);
-            json_events = response;
+    function getEvents() {
+        var obj;
+        $.ajax({
+            url: 'js/eventToSQL.php',
+            type: 'POST',
+            data: 'type=fetch',
+       //     dataType: 'json',
 
-        }
-    });
-
+            async: false,
+            success: function(response){
+                alert(response);
+                //json_events = response;
+                obj = response;
+            }
+        });
+        return obj;
+    }
+    
+    var json_events = getEvents();
+    alert(json_events);
     var zone = "05:30"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
         //options and callbacks
 
-        //events: JSON.parse(json_events),
+        events: JSON.parse(json_events),
         //^ to be uncommented when 'fetch' implementation is fixed
 
         header: {
