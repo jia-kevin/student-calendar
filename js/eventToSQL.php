@@ -36,5 +36,15 @@ if($type == 'fetch') {
   	echo json_encode($events);
 }
 
+if($type == 'delete') {
+    $id = $_POST['id'];
+    $sql = "DELETE FROM calendar WHERE id = $id";
+    $retval = mysql_query( $sql, $conn );
+    
+    if(! $retval ) {
+       die('Could not delete data: ' . mysql_error());
+    }
+    echo "Deleted data successfully\n";
+}
 
 ?>
