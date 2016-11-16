@@ -1,9 +1,17 @@
 <?php
 //https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
+$local = 0 //0 if testing on server 000webhost, 1 if testing on local
 $servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com";
 $username = "kevinarlen";
 $password = "studentcalendar123";
 $dbname = "Student_Calendar0";
+
+if ($local == 0) {
+    $servername = "localhost";
+    $username = "id198573_kevinarlen";
+    $password = "studentcalendar123";
+    $dbname = "id198573_studentcalendar";
+}
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -40,11 +48,14 @@ if($type == 'delete') {
     $id = $_POST['id'];
     $sql = "DELETE FROM calendar WHERE id = $id";
     $retval = mysql_query( $sql, $conn );
-    
-    if(! $retval ) {
-       die('Could not delete data: ' . mysql_error());
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } 
+    else {
+        echo "Error deleting record: " . $conn->error;
     }
-    echo "Deleted data successfully\n";
+
 }
 
 ?>
