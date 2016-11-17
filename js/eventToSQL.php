@@ -49,15 +49,7 @@ if($type == 'fetch') {
 if($type == 'delete') {
     $id = $_POST['id'];
     $sql = "DELETE FROM calendar WHERE id = $id";
-    $retval = mysql_query($conn, $sql);
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-    } 
-    else {
-        echo "Error deleting record: " . $conn->error;
-    }
-
+    $retval = mysqli_query($conn, $sql);
 }
 
 ?>

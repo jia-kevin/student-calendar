@@ -27,20 +27,33 @@ $(document).ready(function() {
         alert(event.title);
         alert(event.start);
         $.ajax({
-                url: 'js/eventToSQL.php',
-                data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response){
-                    event.id = response.eventid;
-                    alert(event.id);
-                },
+            url: 'js/eventToSQL.php',
+            data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
+            type: 'POST',
+            dataType: 'json',
+            success: function(response){
+                event.id = response.eventid;
+                alert(event.id);
+            },
 
-                error: function(e){
-                    alert("error");
-                    console.log(e.responseText);
-                }
-           });
+            error: function(e){
+                alert("error");
+                console.log(e.responseText);
+            }
+       });
+    }
+
+    function deleteEvent(event) {
+        var id = event.id;
+        $.ajax({
+            url: 'js/eventToSQL.php',
+            type: 'POST',
+            data: 'type=delete&id='+id,
+            dataType: 'json',
+            success: function(response){
+                alert(response);
+            }
+       });
     }
 
     
@@ -105,6 +118,7 @@ $(document).ready(function() {
                 callback: function(value) {
                     if (value) {
                         alert("deleting");
+                        deleteEvent(calEvent);
                     }
                 }
             });
