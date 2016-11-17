@@ -118,7 +118,9 @@ $(document).ready(function() {
                 callback: function(value) {
                     if (value) {
                         alert("deleting");
+                        $('#calendar').fullCalendar('removeEvents' , calEvent.id);
                         deleteEvent(calEvent);
+                        $('#calendar').fullCalendar('refetchEvents');
                     }
                 }
             });
