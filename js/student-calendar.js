@@ -124,6 +124,8 @@ $(document).ready(function() {
                     }
                 }
             });
+            vex.dialog.buttons.YES.text = 'Ok';
+            vex.dialog.buttons.NO.text = 'Cancel';
         },
 
         /*
