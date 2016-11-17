@@ -124,8 +124,6 @@ $(document).ready(function() {
                     }
                 }
             });
-            vex.dialog.buttons.YES.text = 'Ok';
-            vex.dialog.buttons.NO.text = 'Cancel';
         },
 
         /*
@@ -153,6 +151,9 @@ $(document).ready(function() {
 
         dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
             getTime(date, date);
+            
+            vex.dialog.buttons.YES.text = 'Ok';
+            vex.dialog.buttons.NO.text = 'Cancel';
             vex.dialog.open({
             input: [
                 '<label for="text">Event Name:</label>',
