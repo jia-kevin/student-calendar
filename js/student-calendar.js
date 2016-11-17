@@ -42,6 +42,7 @@ $(document).ready(function() {
                 }
            });
     }
+
     
     var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
@@ -86,9 +87,26 @@ $(document).ready(function() {
             }
 
             alert(message);
-            
+            vex.dialog.buttons.YES.text = 'Delete';
+            vex.dialog.buttons.NO.text = 'Ok';
             vex.dialog.open({
-                unsafeMessage: message
+                unsafeMessage: message,
+                input: [
+                    '<style>',
+                        '.vex-custom-field-wrapper {',
+                            'margin: 1em 0;',
+                        '}',
+                        '.vex-custom-field-wrapper > label {',
+                            'display: inline-block;',
+                            'margin-bottom: .2em;',
+                        '}',
+                    '</style>'
+                ].join(''),
+                callback: function(value) {
+                    if (value) {
+                        alert("deleting");
+                    }
+                }
             });
         },
 
