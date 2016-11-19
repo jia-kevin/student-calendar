@@ -5,4 +5,4 @@ List of known bugs or issues:
 
 
 List of things that must be implemented:
--Login and authentication screen and backend
+- Login and authentication screen and backend
