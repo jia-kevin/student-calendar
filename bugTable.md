@@ -8,3 +8,4 @@ List of things that must be implemented:
 - Login and authentication screen and backend
 - Update UI/UX
 - Update database to incorporate different schedule
+- Download to .ics
