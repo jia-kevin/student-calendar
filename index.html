@@ -6,11 +6,18 @@
 </head>
 <body>
 
-<form>
-	<input type="text" name="first" placeholder="Firstname">
-	<input type="text" name="last" placeholder="Lastname">
-	<input type="text" name="uid" placeholder="Username">
-	<input type="password" name="pwd" placeholder="password">
+<form action="js/login.php" method="POST">
+	<input type="text" name="uid" placeholder="Username"><br>
+	<input type="password" name="pwd" placeholder="password"><br>
+	<button type="submit">Log in</button>
+</form>
+
+<br><br>
+<form action="js/signup.php" method="POST">
+	<input type="text" name="first" placeholder="Firstname"><br>
+	<input type="text" name="last" placeholder="Lastname"><br>
+	<input type="text" name="uid" placeholder="Username"><br>
+	<input type="password" name="pwd" placeholder="password"><br>
 	<button type="submit">Sign up</button>
 	<a href="calendar.html">Calendar</a>
 </form>
