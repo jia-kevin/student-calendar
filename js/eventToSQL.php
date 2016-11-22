@@ -1,29 +1,12 @@
 <?php
-//https://www.jqueryajaxphp.com/fullcalendar-crud-with-jquery-and-php/
-$LOCAL = 0; //0 if testing on server 000webhost, 1 if testing on local
 
-
-$servername = "student-calendar0.c6nyhmv3ij8y.us-west-2.rds.amazonaws.com";
-$username = "kevinarlen";
-$password = "studentcalendar123";
-$dbname = "Student_Calendar0";
-
-if ($LOCAL == 0) {
-    $servername = "localhost";
-    $username = "id198573_kevinarlen";
-    $password = "studentcalendar123";
-    $dbname = "id198573_studentcalendar";
-}
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include("config.php");
 
 $type = $_POST['type'];
 
 if($type == 'new') {
   	$startdate = $_POST['startdate'].'+'.$_POST['zone'];
   	$title = $_POST['title'];
-  	//$insert = mysqli_query($conn,"INSERT INTO calendar('title', 'startdate', 'enddate', 'allDay') VALUES ('$title','$startdate','$startdate','false')");
-    //$sql = "INSERT INTO calendar(title, startdate, enddate, allDay) VALUES ('test','test','test','false')";
     $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ('$title', '$startdate', '$startdate', 'false')";
     mysqli_query($conn, $sql);
     $lastid = mysqli_insert_id($conn);

@@ -126,28 +126,6 @@ $(document).ready(function() {
             });
         },
 
-        /*
-        eventRender: function(event){ //called after dayClick
-            var title = event.title;
-            var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
-            $.ajax({
-                url: 'js/eventToSQL.php',
-                data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response){
-                    event.id = response.eventid;
-                    alert("ya");
-
-                },
-                error: function(e){
-                    console.log(e.responseText);
-                }
-           });
-        },
-        */
-
-
 
         dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
             getTime(date, date);
