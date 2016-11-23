@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="js/login.php" method="POST">
+<form action="login.php" method="POST">
 	<input type="text" name="uid" placeholder="Username"><br>
 	<input type="password" name="pwd" placeholder="password"><br>
 	<button type="submit">Log in</button>

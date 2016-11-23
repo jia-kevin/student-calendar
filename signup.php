@@ -11,7 +11,7 @@ $sql = "INSERT INTO user (first, last, uid, pwd)
 VALUES ('$first', '$last', '$uid', '$pwd')";
 $result = mysqli_query($conn, $sql);
 
-header("Location: /index.php");
+header("Location: index.php");
 
 
 ?>

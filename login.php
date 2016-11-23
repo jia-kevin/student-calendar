@@ -14,6 +14,6 @@ if (!$row = mysqli_fetch_assoc($result)) {
 	$_SESSION['id'] = $row['id']; // gives the id of the user
 }
 
-header("Location: /index.php");
+header("Location: index.php");
 //https://www.youtube.com/watch?v=e8TP2FERKls 27 min mark
 ?>

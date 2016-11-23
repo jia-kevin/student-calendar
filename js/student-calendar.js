@@ -9,7 +9,7 @@ $(document).ready(function() {
     function getEvents() {
         var obj;
         $.ajax({
-            url: 'js/eventToSQL.php',
+            url: '/eventToSQL.php',
             type: 'POST',
             data: 'type=fetch',
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
         alert(event.title);
         alert(event.start);
         $.ajax({
-            url: 'js/eventToSQL.php',
+            url: '/eventToSQL.php',
             data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
             type: 'POST',
             dataType: 'json',
@@ -46,7 +46,7 @@ $(document).ready(function() {
     function deleteEvent(event) {
         var id = event.id;
         $.ajax({
-            url: 'js/eventToSQL.php',
+            url: '/eventToSQL.php',
             type: 'POST',
             data: 'type=delete&id='+id,
             dataType: 'json',
