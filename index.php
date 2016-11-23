@@ -1,4 +1,6 @@
-<!-- https://www.youtube.com/watch?v=e8TP2FERKls -->
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,13 @@
 	<input type="password" name="pwd" placeholder="password"><br>
 	<button type="submit">Log in</button>
 </form>
-
+<?php
+	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
+		echo $_SESSION['id'];
+	} else {
+		echo "You are not logged in";
+	}
+?>
 <br><br>
 <form action="js/signup.php" method="POST">
 	<input type="text" name="first" placeholder="Firstname"><br>
