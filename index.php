@@ -41,7 +41,7 @@
 	}
 ?>
 <div class="container">
-<form class="form-horizontal" action="js/signup.php" method="POST">
+<form class="form-horizontal" action="signup.php" method="POST">
 	<div class="form-group">
 		<label class="col-sm-2 control-label">First Name</label>
 		<div class="col-sm-8">
@@ -63,16 +63,22 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Password</label>
 		<div class="col-sm-8">
-			<input type="password" class="form-control" name="pwd" placeholder="password">
+			<input type="password" class="form-control" name="pwd" placeholder="Password">
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-2">
 			<button type="submit" class="btn btn-default">Sign up</button>
+			<script type="text/javascript">
+				$scope.redirect = function() {
+					$location.url('/calendar.html');
+				}
+			</script>
+			<a href="/calendar.html">Calendar</a>
+
 		</div>
 	</div>
 </form>
-	<a href="calendar.html">Calendar</a>
 </div>
 
 </body>
