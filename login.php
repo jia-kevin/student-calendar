@@ -15,5 +15,5 @@ if (!$row = mysqli_fetch_assoc($result)) {
 }
 
 header("Location: index.php");
-//https://www.youtube.com/watch?v=e8TP2FERKls 27 min mark
+exit();
 ?>
