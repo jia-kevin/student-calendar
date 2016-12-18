@@ -4,35 +4,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome</title>
+	<title>Student Calendar</title>
+	<link rel='stylesheet' href='css/fullcalendar.css' />
+	<link rel='stylesheet' type='text/css' href='css/jquery-ui.css' />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/vex.css" />
+    <link rel="stylesheet" href="css/vex-theme-os.css" />
+
+    <script src="js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+
+	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
+	<script type="text/javascript" src='js/moment.js'></script>
+	<script type="text/javascript" src='js/fullcalendar.js'></script>
+	<script type="text/javascript" src = 'js/student-calendar.js'></script>
 </head>
+
 <body>
-<div class="container">
-<h2>Student Calendar</h2>
-<div class="container">
-	<form class="form-horizontal" action="login.php" method="POST">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Username</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" name="uid" placeholder="Username">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Password</label>
-			<div class="col-sm-8">
-				<input type="password" class="form-control" name="pwd" placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Log in</button>
-			</div>
-		</div>
-	</form>
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<h2>student-calendar</h2>
 	</div>
-</div>
-</div>
+	<form id="signin" class="navbar-form navbar-right" role="form">
+    <div class="input-group">
+        <input id="usernmae" type="name" class="form-control" name="uid" value="" placeholder="Username">
+    </div>
+		<div class="input-group">
+            <input id="password" type="password" class="form-control" name="pwd" value="" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+        <input class="btn btn-default" type="button" onclick="document.location='/register.php'" value="Register"/>
+</form>
+</nav>
 <?php
 	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
 		echo $_SESSION['id'];
@@ -40,46 +43,8 @@
 		echo "You are not logged in";
 	}
 ?>
-<div class="container">
-<form class="form-horizontal" action="signup.php" method="POST">
-	<div class="form-group">
-		<label class="col-sm-2 control-label">First Name</label>
-		<div class="col-sm-8">
-			<input type="text" class="form-control" name="first" placeholder="Firstname">
-		</div>
+	<div class="container">
+	<div id="calendar"></div>
 	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Last Name</label>
-		<div class="col-sm-8">
-			<input type="text" class="form-control" name="last" placeholder="Lastname">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Username</label>
-		<div class="col-sm-8">
-			<input type="text" class="form-control" name="uid" placeholder="Username">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Password</label>
-		<div class="col-sm-8">
-			<input type="password" class="form-control" name="pwd" placeholder="Password">
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-2">
-			<button type="submit" class="btn btn-default">Sign up</button>
-			<script type="text/javascript">
-				$scope.redirect = function() {
-					$location.url('/calendar.html');
-				}
-			</script>
-			<a href="/calendar.html">Calendar</a>
-
-		</div>
-	</div>
-</form>
-</div>
-
 </body>
 </html>
