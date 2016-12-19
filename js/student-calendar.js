@@ -24,11 +24,12 @@ $(document).ready(function() {
     function sendEvent(event) {
         var title = event.title;
         var start = event.start;
+        var end   = event.end;
         alert(event.title);
         alert(event.start);
         $.ajax({
             url: '/eventToSQL.php',
-            data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
+            data: 'type=new&title='+title+'&startdate='+start+'&enddate='+end+'&zone='+zone,
             type: 'POST',
             dataType: 'json',
             success: function(response){
@@ -74,14 +75,16 @@ $(document).ready(function() {
         events: JSON.parse(getEvents()),
         
         eventClick: function(calEvent, jsEvent, view){
-            var MM = {Jan:"January", Feb:"February", Mar:"March", Apr:"April", May:"May", Jun:"June", Jul:"July", Aug:"August", Sep:"September", Oct:"October", Nov:"November", Dec:"December"};
+            var MM = {Jan:"January", Feb:"February", Mar:"March", Apr:"April", 
+                      May:"May", Jun:"June", Jul:"July", Aug:"August", 
+                      Sep:"September", Oct:"October", Nov:"November", Dec:"December"};
 
-            var stime = String(new Date(calEvent.start.format())).replace(
+            var stime = String(new Date(calEvent.start.format()));/*.replace(
                 /\w{3} (\w{3}) (\d{2}) (\d{4}) (\d{2}):(\d{2}):[^(]+\(([A-Z]{3})\)/,
                 function($0,$1,$2,$3,$4,$5,$6){
                     return MM[$1]+" "+$2+", "+$3+" - "+$4%12+":"+$5+(+$4>12?"PM":"AM")+" "+$6 
                 }
-            );
+            );*/
 
             var etime;
             if (calEvent.end != undefined) {
@@ -96,7 +99,7 @@ $(document).ready(function() {
             var message = 'Event: ' + calEvent.title + 
                             '<br> Start Time: ' + stime;
             if (calEvent.end != undefined) {
-                message += '<br> End Time: ' + stime;
+                message += '<br> End Time: ' + etime;
             }
 
             alert(message);

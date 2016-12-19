@@ -6,8 +6,9 @@ $type = $_POST['type'];
 
 if($type == 'new') {
   	$startdate = $_POST['startdate'].'+'.$_POST['zone'];
+    $enddate = $_POST['enddate'].'+'.$_POST['zone'];
   	$title = $_POST['title'];
-    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ('$title', '$startdate', '$startdate', 'false')";
+    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ('$title', '$startdate', '$enddate', 'false')";
     mysqli_query($conn, $sql);
     $lastid = mysqli_insert_id($conn);
     echo json_encode(array('status'=>'success','eventid'=>$lastid));
