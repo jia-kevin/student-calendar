@@ -5,13 +5,15 @@ include("config.php");
 $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 
-$sql = "SELECT * FROM user WHERE uid='$uid' AND pwd='$pwd'";
+$sql = "SELECT * FROM user WHERE uid='$uid'";
 $result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 
-if (!$row = mysqli_fetch_assoc($result)) {
-	echo "Your username or password is incorrect.";
-} else {
+if (password_verify($pwd, $row['pwd'])){
 	$_SESSION['id'] = $row['id']; // gives the id of the user
+}
+else {
+	echo "Your username or password is incorrect.";
 }
 
 header("Location: index.php");

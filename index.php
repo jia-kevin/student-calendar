@@ -25,20 +25,21 @@
 	<div class="navbar-header">
 		<h2>student-calendar</h2>
 	</div>
-	<form id="signin" class="navbar-form navbar-right" role="form">
+	<form class="navbar-form navbar-right" action="/login.php" method="POST">
     <div class="input-group">
-        <input id="usernmae" type="name" class="form-control" name="uid" value="" placeholder="Username">
+        <input type="text" class="form-control" name="uid" placeholder="Username">
     </div>
-		<div class="input-group">
-            <input id="password" type="password" class="form-control" name="pwd" value="" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Login</button>
+	<div class="input-group">
+        <input type="password" class="form-control" name="pwd" placeholder="Password">
+    </div>
+    	<button type="submit" class="btn btn-default">Log in</button>
         <input class="btn btn-default" type="button" onclick="document.location='/register.php'" value="Register"/>
-</form>
+        <input class="btn btn-default" type="button" onclick="document.location='/logout.php'" value="Logout"/>
+    </form>
 </nav>
 <?php
 	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
-		echo $_SESSION['id'];
+		echo "You are logged in!";
 	} else {
 		echo "You are not logged in";
 	}

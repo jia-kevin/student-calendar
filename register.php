@@ -39,7 +39,6 @@
 				}
 			</script>
 			<a href="/calendar.php">Calendar</a>
-
 		</div>
 	</div>
 </form>
