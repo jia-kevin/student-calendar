@@ -61,7 +61,6 @@ $(document).ready(function() {
     var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
         //options and callbacks
-
         header: {
             left: 'prev, next, today',
             center: 'title',
@@ -70,7 +69,8 @@ $(document).ready(function() {
 
         theme: true,
         height: $(window).height() * 0.95,
-        editable: true,
+        aspectRatio: 1.2,
+        editable: false,
         droppable: true,
         events: JSON.parse(getEvents()),
         

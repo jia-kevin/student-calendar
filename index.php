@@ -23,20 +23,20 @@
 <body>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
-		<h2>student-calendar</h2>
+		<h3>student-calendar</h3>
 	</div>
 	<form class="navbar-form navbar-right" action="/login.php" method="POST">
-    <div class="input-group">
-        <input type="text" class="form-control" name="uid" placeholder="Username">
-    </div>
-	<div class="input-group">
-        <input type="password" class="form-control" name="pwd" placeholder="Password">
-    </div>
-    	<button type="submit" class="btn btn-default">Log in</button>
-        <input class="btn btn-default" type="button" onclick="document.location='/register.php'" value="Register"/>
-        <input class="btn btn-default" type="button" onclick="document.location='/logout.php'" value="Logout"/>
-    </form>
-</nav>
+	    <div class="input-group">
+	        <input type="text" class="form-control" name="uid" placeholder="Username">
+	    </div>
+		<div class="input-group">
+	        <input type="password" class="form-control" name="pwd" placeholder="Password">
+	    </div>
+		<button type="submit" class="btn btn-primary btn-sm">Log in</button>
+	    <input class="btn btn-success btn-sm" type="button" onclick="document.location='/register.php'" value="Register"/>
+	    <input class="btn btn-info btn-sm" type="button" onclick="document.location='/logout.php'" value="Logout"/>
+	</form>
+	</nav>
 <?php
 	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
 		include("userinfo.php");
