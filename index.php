@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/vex-theme-os.css" />
 
     <script src="js/vex.combined.min.js"></script>
-    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <script> vex.defaultOptions.className = 'vex-theme-os'</script>
 
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
@@ -39,7 +39,9 @@
 </nav>
 <?php
 	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
-		echo "You are logged in!";
+		include("userinfo.php");
+		$firstname = getUserInfo('firstname');
+		echo "You are logged in! User: $firstname";
 	} else {
 		echo "You are not logged in";
 	}
