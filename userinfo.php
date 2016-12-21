@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include_once("config.php");
 if (!empty($_POST['type'])){
 	$type = $_POST['type'];
 	if($type == 'firstname') {
@@ -59,13 +59,13 @@ function getUserInfo($infoType){
 	}
 
 	if($infoType == 'classes') {
-		$query = mysqli_query($conn, "SELECT * FROM userClassLink WHERE user = ", $_SESSION['id']);
+		$query = mysqli_query($conn, "SELECT * FROM userClassLink WHERE user = '". $_SESSION['id']."'");
 		$classes = array();
 		while($fetch = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 		     $e = $fetch['class'];
 		     array_push($classes, $e);
 		}
-		echo json_encode($classes);
+		return $classes;
 	}
 }
 ?>

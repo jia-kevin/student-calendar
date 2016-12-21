@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("config.php");
 
 $type = $_POST['type'];
@@ -17,6 +17,9 @@ if($type == 'new') {
 if($type == 'fetch') {
   	$events = array();
   	$query = mysqli_query($conn, "SELECT * FROM calendar");
+    $classes = array();
+    include("userinfo.php");
+    $classes = getUserInfo('classes');
   	while($fetch = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 	     $e = array();
 	     $e['id'] = $fetch['id'];
@@ -25,7 +28,14 @@ if($type == 'fetch') {
 	     $e['end'] = $fetch['enddate'];
 	     $allday = ($fetch['allDay'] == "true") ? true : false;
 	     $e['allDay'] = $allday;
-	     array_push($events, $e);
+       $e['class'] = $fetch['class'];
+       foreach($classes as $checkClass) {
+        if ($e['class'] == $checkClass){
+          array_push($events, $e);
+          break;
+        }
+       }
+       unset($checkClass);
   	}
   	echo json_encode($events);
 }

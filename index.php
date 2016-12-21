@@ -17,7 +17,8 @@
 	<script type="text/javascript" src='js/jquery-3.1.1.js'></script>
 	<script type="text/javascript" src='js/moment.js'></script>
 	<script type="text/javascript" src='js/fullcalendar.js'></script>
-	<script type="text/javascript" src = 'js/student-calendar.js'></script>
+	<script type="text/javascript" src='js/student-calendar.js'></script>
+	<script type="text/javascript" src='js/newclass.js'></script>
 </head>
 
 <body>
@@ -25,7 +26,10 @@
 	<div class="navbar-header">
 		<h3>student-calendar</h3>
 	</div>
+
 	<form class="navbar-form navbar-right" action="/login.php" method="POST">
+    <input class="btn btn-default" type="button" value="Join" <?php if (!isset($_SESSION['id'])) { ?> disabled <?php } ?> onclick="joinClassPrompt();" />
+    <input class="btn btn-default" type="button" value="Create" <?php if (!isset($_SESSION['id'])) { ?> disabled <?php } ?> onclick="createClassPrompt();" />
 	    <div class="input-group">
 	        <input type="text" class="form-control" name="uid" placeholder="Username">
 	    </div>
@@ -45,6 +49,8 @@
 	} else {
 		echo "You are not logged in";
 	}
+
+	if (!isset($_SESSION))
 ?>
 	<div class="container">
 	<div id="calendar"></div>

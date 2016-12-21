@@ -153,7 +153,7 @@ $(document).ready(function() {
                 sendEvent(newEvent);
                 $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
             }   
-            })
+            });
         }
 
 
