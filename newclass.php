@@ -21,6 +21,24 @@ if ($type == 'newClass')  {
     mysqli_query($conn, $sql);
 }
 
+if ($type == 'getClasses') {
+    $class = $_POST['class'];
+    $query = "SELECT * userClassLink WHERE user = ".$_SESSION['id']."";
+    $result = mysqli_query($conn, $sql);
+    while($fetch = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+         $e = array();
+         $e['class'] = $fetch['class'];
+       foreach($classes as $checkClass) {
+        if ($e['class'] == $checkClass){
+          array_push($events, $e);
+          break;
+        }
+       }
+       unset($checkClass);
+    }
+    echo json_encode($events);
+}
+
 if ($type == 'inClass')  {
     $class = $_POST['class'];
     $sql = "SELECT * userClassLink WHERE user = ".$_SESSION['id']." AND class = '".$class."'";

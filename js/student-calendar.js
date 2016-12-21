@@ -21,6 +21,28 @@ $(document).ready(function() {
         return obj;
     }
 
+    //gets a list of all the classes (?)
+    function getClasses() {
+        var obj;
+        $.ajax({
+            url: '/newclass.php',
+            type: 'POST',
+            data: 'type=getClasses',
+
+            async: false,
+            success: function(response){
+                obj = response;
+            }
+        });
+        return obj;
+    }
+
+    //returns the classes as a list of HTML inputs
+    function getHTMLClasses(){
+
+    }
+
+
     function sendEvent(event) {
         var title = event.title;
         var start = event.start;
@@ -122,7 +144,7 @@ $(document).ready(function() {
 
         dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
             getTime(date, date);
-            
+            alert(getClasses());
             vex.dialog.buttons.YES.text = 'Ok';
             vex.dialog.buttons.NO.text = 'Cancel';
             vex.dialog.open({

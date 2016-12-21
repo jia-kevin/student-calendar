@@ -2,9 +2,10 @@
 <html>
 <head>
 	<title>register</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top: 50px;">
 <form class="form-horizontal" action="signup.php" method="POST">
 	<div class="form-group">
 		<label class="col-sm-2 control-label">First Name</label>
@@ -38,7 +39,6 @@
 					$location.url('/calendar.php');
 				}
 			</script>
-			<a href="/calendar.php">Calendar</a>
 		</div>
 	</div>
 </form>
