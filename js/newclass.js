@@ -21,13 +21,12 @@ function classExists(checkClass) {
         data: 'type=classExists&class='+checkClass,
 
         async: false,
-        //dataType: 'boolean', 
         success: function(response){
             result = response;
         }
     });
-    alert(result);
-    return result;
+    if (result == 0) return false;
+    return true;
 }
 function newClass(checkClass) {
     var result;
