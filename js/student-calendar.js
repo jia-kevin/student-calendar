@@ -155,6 +155,8 @@ $(document).ready(function() {
                     '<input name="stime" type="time" value="" />',
                 '<label for="end">End Time</label>',
                     '<input name="etime" type="time" value="" />',
+                '<label for="class">Class</label>',
+                    '<input name="className" type="text" value="" />',
                 '<label for="allDay">All day?</label>',
                     '<input name="allDay" type="checkbox" />'
             ].join(''),

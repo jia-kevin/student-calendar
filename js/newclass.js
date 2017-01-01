@@ -10,7 +10,8 @@ function inClass(checkClass) {
             result = response;
         }
     });
-    return result;
+    if (result == 0) return false;
+    return true;
 }
 
 function classExists(checkClass) {
@@ -25,6 +26,7 @@ function classExists(checkClass) {
             result = response;
         }
     });
+    alert(result);
     if (result == 0) return false;
     return true;
 }
