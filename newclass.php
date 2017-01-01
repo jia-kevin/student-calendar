@@ -28,23 +28,31 @@ if (!empty($_POST['type'])){
         mysqli_query($conn, $sql);
     }
 
+
     if ($type == 'getClasses') {
-        $class = $_POST['class'];
+        $classes = array();
         $sql = "SELECT * userClassLink WHERE user = ".$_SESSION['id']."";
-        $result = mysqli_query($conn, $sql);
-        while($fetch = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-            $e = array();
-            $e['class'] = $fetch['class'];
-            foreach($classes as $checkClass) {
-                if ($e['class'] == $checkClass){
-                    array_push($events, $e);
-                    break;
-                }
-            }
-            unset($checkClass);
+        $query = mysqli_query($conn, $sql);
+        include("userinfo.php");
+
+        if (isset($_SESSION['id'])){
+          $classes = getUserInfo('classes');
         }
-        echo json_encode($events);
+
+        $cname = array();
+
+        foreach ($classes as $classid){
+            $query = mysqli_query($conn, "SELECT * FROM classes WHERE id = $classid");
+            while($fetch = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                 $e = $fetch['name'];
+                 array_push($cname, $e);
+            }
+        }
+        unset($classid);
+
+        echo json_encode($cname);
     }
+
 
     if ($type == 'inClass')  {
         $class = $_POST['class'];

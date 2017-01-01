@@ -23,7 +23,7 @@
 
 <body>
 <nav class="navbar navbar-default">
-	<div class="navbar-header">
+	<div class="navbar-header text-center">
 		<h3>student-calendar</h3>
 	</div>
 

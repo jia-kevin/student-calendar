@@ -21,7 +21,7 @@ $(document).ready(function() {
         return obj;
     }
 
-    //gets a list of all the classes (?)
+    //gets a list of all the classes
     function getClasses() {
         var obj;
         $.ajax({
@@ -39,7 +39,16 @@ $(document).ready(function() {
 
     //returns the classes as a list of HTML inputs
     function getHTMLClasses(){
-
+        var jclasses = jQuery.parseJSON(getClasses());
+        var str = "<select id=\"test-dropdown\" onchange=\"choice1(this)\">";
+        for (var c in jclasses) {
+            if (jclasses.hasOwnProperty(c)){
+                temp = ["<option value=", c, ">", jclasses[c], "</option>"].join('');
+                str = str.concat(temp);
+            }
+        }
+        str = str.concat("</select>");
+        return str
     }
 
 
@@ -78,7 +87,7 @@ $(document).ready(function() {
             }
        });
     }
-
+    
     
     var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
@@ -113,7 +122,7 @@ $(document).ready(function() {
             if (calEvent.end != undefined) {
                 message += '<br> End Time: ' + etime;
             }
-
+            //alert(getClasses)
             alert(message);
             vex.dialog.buttons.YES.text = 'Delete';
             vex.dialog.buttons.NO.text = 'Ok';
@@ -140,26 +149,29 @@ $(document).ready(function() {
                 }
             });
         },
-
+        
 
         dayClick: function(date, allDay, jsEvent, view) { //onclick event creation
             getTime(date, date);
-            alert(getClasses());
             vex.dialog.buttons.YES.text = 'Ok';
             vex.dialog.buttons.NO.text = 'Cancel';
+            var s = getHTMLClasses();
+            alert('yaaa ' +s);
             vex.dialog.open({
-            input: [
-                '<label for="text">Event Name:</label>',
-                '<input name="name" type="text" value="" />',
-                '<label for="start">Start Time</label>',
-                    '<input name="stime" type="time" value="" />',
-                '<label for="end">End Time</label>',
-                    '<input name="etime" type="time" value="" />',
-                '<label for="class">Class</label>',
-                    '<input name="className" type="text" value="" />',
-                '<label for="allDay">All day?</label>',
-                    '<input name="allDay" type="checkbox" />'
-            ].join(''),
+                
+                
+            input: 
+                '<label for="text">Event Name:</label>' +
+                '<input name="name" type="text" value="" />' +
+                '<label for="start">Start Time</label>' +
+                    '<input name="stime" type="time" value="" />' +
+                '<label for="end">End Time</label>' +
+                    '<input name="etime" type="time" value="" />' +
+                '<label for="class">Class</label><br>'+
+                    s +
+                    //'<input name="className" type="text" value="" />',
+                '<br><label for="allDay">All day?</label>' +
+                    '<input name="allDay" type="checkbox" />',
             callback: function (data) {
                 if (!data) {
                     return console.log('Cancelled')
