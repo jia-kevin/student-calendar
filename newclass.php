@@ -129,4 +129,11 @@ function newclass($type) {
         mysqli_query($conn, $sql);
     }
 }
+
+function classToID($className) {
+    $query = "SELECT id FROM classes WHERE name = '".$className."'";
+    $classID = mysqli_query($conn, $query);
+
+    return $classID;
+}
 ?>
