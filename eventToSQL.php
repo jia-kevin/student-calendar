@@ -10,7 +10,7 @@ if($type == 'new') {
   	$title = $_POST['title'];
     $class = $_POST['class'];
 
-    $sql = "INSERT INTO calendar(title, startdate, enddate, allday) VALUES ('$title', '$startdate', '$enddate', 'false')";
+    $sql = "INSERT INTO calendar(title, startdate, enddate, allday, class) VALUES ('$title', '$startdate', '$enddate', 'false', '$class')";
     mysqli_query($conn, $sql);
     $lastid = mysqli_insert_id($conn);
     echo json_encode(array('status'=>'success','eventid'=>$lastid));
@@ -24,7 +24,6 @@ if($type == 'fetch') {
     include("userinfo.php");
     if (isset($_SESSION['id'])){
       $classes = getUserInfo('classes');
-
     	while($fetch = mysqli_fetch_array($query)) {
   	     $e = array();
   	     $e['id'] = $fetch['id'];

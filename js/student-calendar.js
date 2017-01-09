@@ -51,21 +51,42 @@ $(document).ready(function() {
         return str
     }
 
+    function getClassID(className) {
+        var classID;
+        $.ajax({
+            url: '/newclass.php',
+            type: 'POST',
+            data: {type: 'classToID', argument: className},
+            async: false,
+            success: function(response){
+                alert(response);
+                classID = response;
+                //alert("please" + classID);
+            },
+            error: function(e){
+                alert('fuck');
+            }
+        });
+
+        return classID;
+    }
 
     function sendEvent(event) {
         var title = event.title;
         var start = event.start;
         var end   = event.end;
+        var c = event.class;
+        //alert(event.class);
         alert(event.title);
         alert(event.start);
         $.ajax({
             url: '/eventToSQL.php',
-            data: 'type=new&title='+title+'&startdate='+start+'&enddate='+end+'&zone='+zone,
+            data: 'type=new&title='+title+'&startdate='+start+'&enddate='+end+'&zone='+zone+'&class='+c,
             type: 'POST',
             dataType: 'json',
             success: function(response){
                 event.id = response.eventid;
-                alert(event.id);
+                //alert(event.id);
             },
 
             error: function(e){
@@ -88,7 +109,6 @@ $(document).ready(function() {
        });
     }
     
-    
     var zone = "05:00"; //adding location timezone, to be modified
     $('#calendar').fullCalendar({
         //options and callbacks
@@ -104,7 +124,6 @@ $(document).ready(function() {
         editable: false,
         droppable: true,
         events: JSON.parse(getEvents()),
-        
         eventClick: function(calEvent, jsEvent, view){
             var MM = {Jan:"January", Feb:"February", Mar:"March", Apr:"April", 
                       May:"May", Jun:"June", Jul:"July", Aug:"August", 
@@ -122,8 +141,6 @@ $(document).ready(function() {
             if (calEvent.end != undefined) {
                 message += '<br> End Time: ' + etime;
             }
-            //alert(getClasses)
-            alert(message);
             vex.dialog.buttons.YES.text = 'Delete';
             vex.dialog.buttons.NO.text = 'Ok';
             vex.dialog.open({
@@ -177,10 +194,12 @@ $(document).ready(function() {
 
                 var title = data.name;
                 var datetime = date;
+
                 var newEvent = {
                     title: title,
                     allDay: data.allDay,
                     start: getTime(date, data.stime).format(),
+                    class: getClassID(data.className),
                     end: getTime(date, data.etime).format()
                 }
               //  alert(newEvent.start.format("YYYY-MM-DD[T]HH:MM:SS"));

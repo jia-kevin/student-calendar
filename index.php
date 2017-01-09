@@ -29,7 +29,7 @@
 			include("userinfo.php");
 			$firstname = getUserInfo('firstname');
 			?>
-			<h3>Welcome, <?= $firstname; ?></h3>
+			<h3>Welcome, <?= $firstname; ?>.</h3>
 			<?php
 		} else {
 			?>
