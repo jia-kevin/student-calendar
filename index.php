@@ -24,7 +24,20 @@
 <body>
 <nav class="navbar navbar-default">
 	<div class="navbar-header text-center">
-		<h3>student-calendar</h3>
+	<?php 
+		if (isset($_SESSION['id'])) {
+			include("userinfo.php");
+			$firstname = getUserInfo('firstname');
+			?>
+			<h3>Welcome, <?= $firstname; ?></h3>
+			<?php
+		} else {
+			?>
+			<h3 id="title">student-calendar</h3>
+			<?php
+		}
+	?>
+		
 	</div>
 
 	<form class="navbar-form navbar-right" action="/login.php" method="POST">
@@ -42,15 +55,15 @@
 	</form>
 	</nav>
 <?php
-	if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
-		include("userinfo.php");
-		$firstname = getUserInfo('firstname');
-		echo "You are logged in! User: $firstname";
-	} else {
-		echo "You are not logged in";
-	}
+	// if (isset($_SESSION['id'])) { //isset tells you if the session has been activated
+	// 	include("userinfo.php");
+	// 	$firstname = getUserInfo('firstname');
+	// 	echo "You are logged in! User: $firstname";
+	// } else {
+	// 	echo "You are not logged in";
+	// }
 
-	if (!isset($_SESSION))
+	// if (!isset($_SESSION))
 ?>
 	<div class="container">
 	<div id="calendar"></div>

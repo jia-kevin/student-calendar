@@ -155,8 +155,7 @@ $(document).ready(function() {
             getTime(date, date);
             vex.dialog.buttons.YES.text = 'Ok';
             vex.dialog.buttons.NO.text = 'Cancel';
-            var s = getHTMLClasses();
-            alert('yaaa ' +s);
+            //var s = getHTMLClasses(); uncomment if necessary
             vex.dialog.open({
                 
                 
@@ -168,9 +167,8 @@ $(document).ready(function() {
                 '<label for="end">End Time</label>' +
                     '<input name="etime" type="time" value="" />' +
                 '<label for="class">Class</label><br>'+
-                    s +
-                    //'<input name="className" type="text" value="" />',
-                '<br><label for="allDay">All day?</label>' +
+                    '<input name="className" type="text" value="" />'+ // replace with s variable for dynamic dropdown
+                '<br><label for="allDay">All day?</label><br>'+
                     '<input name="allDay" type="checkbox" />',
             callback: function (data) {
                 if (!data) {
