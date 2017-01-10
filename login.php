@@ -12,9 +12,6 @@ $row = mysqli_fetch_assoc($result);
 if (password_verify($pwd, $row['pwd'])){
 	$_SESSION['id'] = $row['id']; // gives the id of the user
 }
-else {
-	echo "Your username or password is incorrect.";
-}
 
 header("Location: index.php");
 exit();

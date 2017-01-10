@@ -33,7 +33,9 @@
 			<?php
 		} else {
 			?>
-			<h3 id="title">student-calendar</h3>
+			<script>
+			  window.location.href = "loginpage.php";
+			</script>
 			<?php
 		}
 	?>
