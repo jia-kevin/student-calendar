@@ -71,19 +71,17 @@ if (!empty($_POST['type'])){
     }
 
     if ($type == 'classToID'){
-        $className = $_POST['argument'];
+        $className = (string)$_POST['argument'];
         $query = "SELECT id FROM classes WHERE name = '".$className."'";
         $result = mysqli_query($conn, $query);
-        if (!$result) {
-            return $className;
+        $info = mysqli_fetch_row($result);
+        if ($result) {
+            echo $info[0];
         } else {
-            return 0;
+            echo "fail";
         }
-        
     }
-
 }
-
 
 
 function newclass($type) {
@@ -143,8 +141,6 @@ function newclass($type) {
         $sql = "INSERT INTO userClassLink(user, class) VALUES (".$_SESSION['id'].", '".$class."')";
         mysqli_query($conn, $sql);
     }
-
-
 }
 
 // function classToID($className) {

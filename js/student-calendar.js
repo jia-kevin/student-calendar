@@ -53,6 +53,7 @@ $(document).ready(function() {
 
     function getClassID(className) {
         var classID;
+        alert(className);
         $.ajax({
             url: '/newclass.php',
             type: 'POST',
@@ -61,7 +62,6 @@ $(document).ready(function() {
             success: function(response){
                 alert(response);
                 classID = response;
-                //alert("please" + classID);
             },
             error: function(e){
                 alert('fuck');
