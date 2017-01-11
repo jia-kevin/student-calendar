@@ -1,5 +1,5 @@
 <?php    
-session_start();//session is a way to store information (in variables) to be used across multiple pages.  
-session_destroy();  
-header("Location: index.php");//use for the redirection to some page  
+session_start();
+session_destroy(); // ends the session 
+header("Location: index.php"); // redirects to login page
 ?> 

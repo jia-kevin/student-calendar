@@ -13,10 +13,10 @@ if (password_verify($pwd, $row['pwd'])){
 	$_SESSION['id'] = $row['id']; // gives the id of the user
 }
 if (isset($_SESSION['id'])){
-	header("Location: index.php");
+	header("Location: index.php"); // if user wants to log in
 } 
 if (empty($uid)){
-	header("Location: register.php");
+	header("Location: register.php"); // if user wants to register
 }
 exit();
 ?>

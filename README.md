@@ -1,5 +1,4 @@
-# student-calendar
+### student-calendar
+# Kevin Jia, Arlen Yu
 
-Kevin Jia, Arlen Yu
-
-Current domain: http://studentcalendar.000webhostapp.com/
+## Overview

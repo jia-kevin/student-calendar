@@ -8,13 +8,13 @@
 <div class="container" style="margin-top: 50px;">
 <form class="form-horizontal" method="POST" action="login.php">
 	<div class="form-group">
-		<label class="col-sm-2 control-label">username</label>
+		<label class="col-sm-2 control-label">User</label>
 		<div class="col-sm-8">
 			<input type="text" class="form-control" name="uid" placeholder="Username">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label">password</label>
+		<label class="col-sm-2 control-label">Password</label>
 		<div class="col-sm-8">
 			<input type="password" class="form-control" name="pwd" placeholder="Password">
 		</div>
