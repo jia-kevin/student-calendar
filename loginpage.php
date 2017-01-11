@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container" style="margin-top: 50px;">
-<form class="form-horizontal" action="login.php" method="POST">
+<form class="form-horizontal" method="POST" action="login.php">
 	<div class="form-group">
 		<label class="col-sm-2 control-label">username</label>
 		<div class="col-sm-8">
@@ -22,7 +22,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-2">
 			<button type="submit" class="btn btn-default">Login</button>
-			<button type="submit" class="btn btn-default" onclick="window.location = '/register.php'" >Sign Up</button>
+			<button type="submit" class="btn btn-default">Sign Up</button>
 		</div>
 	</div>
 </form>

@@ -12,7 +12,11 @@ $row = mysqli_fetch_assoc($result);
 if (password_verify($pwd, $row['pwd'])){
 	$_SESSION['id'] = $row['id']; // gives the id of the user
 }
-
-header("Location: index.php");
+if (isset($_SESSION['id'])){
+	header("Location: index.php");
+} 
+if (empty($uid)){
+	header("Location: register.php");
+}
 exit();
 ?>
